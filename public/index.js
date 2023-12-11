@@ -59,22 +59,24 @@ $(document).ready(function () {
   });
 });
 
-function copiarAlPortapapeles(texto) {
-  // Crea un elemento de texto oculto
-  var input = document.createElement("textarea");
-  input.value = texto;
-  document.body.appendChild(input);
+function copiarAlPortapapeles(elemento) {
+  var textoACopiar = $(elemento).text();
 
-  // Selecciona el texto del elemento de texto
-  input.select();
-  input.setSelectionRange(0, 99999); // Para dispositivos móviles
+    // Crear un elemento de texto temporal y seleccionarlo
+    var elementoTemporal = $('<textarea>');
+    elementoTemporal.val(textoACopiar).css('position', 'absolute').css('left', '-9999px');
+    $('body').append(elementoTemporal);
+    elementoTemporal.select();
 
-  // Copia el texto al portapapeles
-  document.execCommand("copy");
+    // Copiar el texto al portapapeles
+    document.execCommand('copy');
 
-  // Elimina el elemento de texto ahora que ya ha sido copiado
-  document.body.removeChild(input);
+    // Remover el elemento temporal
+    elementoTemporal.remove();
+
+
 }
+
 
 // Función para mostrar SweetAlert al hacer clic en el botón
 function mostrarSweetAlert(idProducto) {
