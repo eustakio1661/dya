@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lista Regalos Boda Diego y Alexia</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"
+    />
+    <link
+      href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css"
+    />
+    <link href="index.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/b79bb118bd.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <div class="grid-title">
+        <h1>Lista Regalos</h1>
+        <div class="first-modal">
+          <!-- Button trigger modal -->
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          >
+            Transferencias
+          </button>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table id="miTabla" class="table table-sm table-striped table-hover">
+          <thead>
+            <tr>
+              <th>Descripción</th>
+              <th>Estado</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Modalidades de Transferencia
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="bcp-decoration">
+              <div class="center-container my-1">
+                <img class="logo-empresas" src="img/bcp.png" alt="bpc" />
+              </div>
+              <div class="grid-onecolumn">
+                <p class="center-container">
+                  Nro Cuenta:<span
+                    class="cuentas mx-1"
+                    onclick="copiarAlPortapapeles('19197007303073')"
+                    >19197007303073</span
+                  >
+                </p>
+                <p class="center-container">
+                  CCI:<span class="cuentas mx-1">00219119700730307359</span>
+                </p>
+              </div>
+            </div>
+            <div class="separator-transparent"></div>
+            <div class="interbank-decoration">
+              <div class="center-container my-1">
+                <img class="logo-empresas" src="img/Interbank.png" alt="bpc" />
+              </div>
+              <div class="grid-onecolumn">
+                <p class="center-container">
+                  Nro Cuenta:<span
+                    class="cuentas mx-1"
+                    onclick="copiarAlPortapapeles('1663279339664')"
+                    >1663279339664</span
+                  >
+                </p>
+                <p class="center-container">
+                  CCI:<span class="cuentas mx-1">00316601327933966460</span>
+                </p>
+              </div>
+            </div>
+            <div class="separator-transparent"></div>
+            <div class="yaplin-decoration">
+              <div class="center-container my-1">
+                <img class="logo-yaplin" src="img/YapePlin.png" alt="bpc" />
+              </div>
+              <div class="grid-onecolumn">
+                <p class="center-container">
+                  Celular:<span
+                    class="cuentas mx-1"
+                    onclick="copiarAlPortapapeles('943447957')"
+                    >943447957</span
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cerrar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+      integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+      integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="index.js"></script>
+  </body>
+</html>

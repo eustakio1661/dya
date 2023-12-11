@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "descripcion": "Aspiradora",
+    "estado": false,
+    "persona": ""
+  },
+  {
+    "id": 2,
+    "descripcion": "Hervidor Eléctrico",
+    "estado": false,
+    "persona": ""
+  },
+  {
+    "id": 3,
+    "descripcion": "Plancha",
+    "estado": false,
+    "persona": ""
+  },
+  {
+    "id": 4,
+    "descripcion": "Termo",
+    "estado": false,
+    "persona": ""
+  },
+  {
+    "id": 5,
+    "descripcion": "Ollas",
+    "estado": false,
+    "persona": ""
+  },
+  {
+    "id": 6,
+    "descripcion": "Platos",
+    "estado": false,
+    "persona": ""
+  },
+  {
+    "id": 7,
+    "descripcion": "Cubiertos",
+    "estado": false,
+    "persona": ""
+  },
+  {
+    "id": 8,
+    "descripcion": "Sartén",
+    "estado": false,
+    "persona": ""
+  },
+  {
+    "id": 9,
+    "descripcion": "Vasos",
+    "estado": false,
+    "persona": ""
+  },
+  {
+    "id": 10,
+    "descripcion": "Tazas",
+    "estado": false,
+    "persona": ""
+  },
+  {
+    "id": 11,
+    "descripcion": "Microondas",
+    "estado": true,
+    "persona": "Elba Sosa"
+  },
+  {
+    "id": 12,
+    "descripcion": "Licuadora",
+    "estado": true,
+    "persona": "Fam. Sosa"
+  }
+]
