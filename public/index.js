@@ -124,22 +124,23 @@ function mostrarSweetAlert(idProducto) {
 }
 
 
-function guardarJson(idProducto,nombreIngresado){
-    // Carga el archivo JSON y realiza la actualización
-    $.getJSON(_url+"data/lista", function (data) {
-        // Busca el elemento por el ID del producto
-        const producto = data.find((item) => item.id == idProducto);
+function guardarJson(idProducto, nombreIngresado) {
+  // Carga el archivo JSON y realiza la actualización
+  $.getJSON(_url+"data/lista.json", function (data) {
+      // Busca el elemento por el ID del producto
+      const producto = data.find((item) => item.id == idProducto);
 
-        // Actualiza las propiedades del producto
-        if (producto) {
-            producto.estado = true;
-            producto.persona = nombreIngresado;
+      // Actualiza las propiedades del producto
+      if (producto) {
+          producto.estado = true;
+          producto.persona = nombreIngresado;
 
-            $.ajax({
-              type: "POST",
-              url: _url+"data/lista",
+          // Guarda los cambios directamente en el archivo JSON
+          $.ajax({
+              type: "PUT", // Cambia a método PUT
+              url: _url+"data/lista.json", // Ruta directa al archivo JSON
               contentType: "application/json",
-              data: JSON.stringify({ data }),
+              data: JSON.stringify(data), // Envía todo el contenido actualizado
               success: function (response) {
                   console.log("Datos actualizados con éxito");
                   // Recarga la página después de guardar los cambios
@@ -149,7 +150,6 @@ function guardarJson(idProducto,nombreIngresado){
                   console.error("Error al actualizar datos:", error);
               },
           });
-        }
-    });
- 
+      }
+  });
 }
