@@ -137,7 +137,7 @@ function guardarJson(idProducto,nombreIngresado){
 
             $.ajax({
               type: "POST",
-              url: _url+"data/lista",
+              url: _url+"data/lista.json",
               contentType: "application/json",
               data: JSON.stringify({ data }),
               success: function (response) {
