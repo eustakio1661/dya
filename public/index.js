@@ -126,7 +126,7 @@ function mostrarSweetAlert(idProducto) {
 
 function guardarJson(idProducto,nombreIngresado){
     // Carga el archivo JSON y realiza la actualización
-    $.getJSON(_url+"data/lista.json", function (data) {
+    $.getJSON(_url+"data/lista", function (data) {
         // Busca el elemento por el ID del producto
         const producto = data.find((item) => item.id == idProducto);
 
@@ -137,7 +137,7 @@ function guardarJson(idProducto,nombreIngresado){
 
             $.ajax({
               type: "POST",
-              url: _url+"data/lista.json",
+              url: _url+"data/lista",
               contentType: "application/json",
               data: JSON.stringify({ data }),
               success: function (response) {
