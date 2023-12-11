@@ -16,6 +16,8 @@
   "bugs": {
     "url": "https://github.com/eustakio1661/dya/issues"
   },
-  "homepage": "https://github.com/eustakio1661/dya#readme"
-
+  "homepage": "https://github.com/eustakio1661/dya#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
