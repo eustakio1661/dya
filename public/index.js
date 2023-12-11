@@ -1,11 +1,13 @@
-const _url = "https://regalos-boda-dya-8627f768c4f6.herokuapp.com/";
+const _url = "https://apiformulario.adex.pe/";
 // Configura DataTable en español y personaliza opciones
 $(document).ready(function () {
   // Ruta del archivo JSON
-  var rutaJSON = "data/lista.json";
+  var rutaJSON = "https://apiformulario.adex.pe/obtener-json";
+
   // Realiza una solicitud AJAX para obtener los datos del archivo JSON
   $.ajax({
     url: rutaJSON,
+    method: "GET",
     dataType: "json",
     success: function (datosJSON) {
       // Configura DataTable en español y personaliza opciones
@@ -41,6 +43,7 @@ $(document).ready(function () {
           },
         ],
       });
+
       // Agrega un evento de clic al botón
       $("#miTabla tbody").on("click", "[id^='RegistraPersona']", function () {
         // Extrae el ID del botón
@@ -123,31 +126,39 @@ function mostrarSweetAlert(idProducto) {
 }
 
 function guardarJson(idProducto, nombreIngresado) {
-  // Carga el archivo JSON y realiza la actualización
-  $.getJSON(_url + "data/lista.json", function (data) {
-    // Busca el elemento por el ID del producto
-    const producto = data.find((item) => item.id == idProducto);
-
-    // Actualiza las propiedades del producto
-    if (producto) {
-      producto.estado = true;
-      producto.persona = nombreIngresado;
-
-      // Guarda los cambios directamente en el archivo JSON
-      $.ajax({
-        type: "POST",
-        url: _url + "actualizar-lista", // Ruta directa al archivo JSON
-        contentType: "application/json",
-        data: JSON.stringify(data), // Envía todo el contenido actualizado
-        success: function (response) {
-          console.log("Datos actualizados con éxito");
-          // Recarga la página después de guardar los cambios
-          location.reload();
-        },
-        error: function (error) {
-          console.error("Error al actualizar datos:", error);
-        },
-      });
-    }
+  // Realiza una solicitud POST con los parámetros en la URL
+  $.ajax({
+    type: "POST",
+    url: _url + "act-producto",
+    data: {
+      idProducto: idProducto,
+      nombreIngresado: nombreIngresado,
+    },
+    success: function (response) {
+      console.log(response);
+      // Si la respuesta contiene el mensaje esperado, recarga la página
+      if (response && response.mensaje === "Producto actualizado correctamente") {
+        location.reload();
+      } else {
+        // Si la respuesta no es la esperada, muestra un SweetAlert con el mensaje de error
+        mostrarSweetAlertError(response && response.mensaje ? response.mensaje : "Error al actualizar datos. Por favor, intenta nuevamente o contacta al número 943447957");
+      }
+    },
+    error: function (error) {
+      console.error("Error al actualizar datos:", error);
+      // Muestra un SweetAlert con el mensaje de error
+      mostrarSweetAlertError("Error al actualizar datos. Por favor, intenta nuevamente o contacta al número 943447957");
+    },
   });
 }
+
+// Función para mostrar SweetAlert con mensaje de error
+function mostrarSweetAlertError(mensaje) {
+  Swal.fire({
+    title: "Error",
+    text: mensaje,
+    icon: "error",
+    confirmButtonText: "Aceptar",
+  });
+}
+
