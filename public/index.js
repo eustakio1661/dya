@@ -59,23 +59,28 @@ $(document).ready(function () {
   });
 });
 
-function copiarAlPortapapeles(elemento) {
-  var textoACopiar = $(elemento).text();
+function copiarAlPortapapeles(element) {
+  var range, selection, worked;
 
-    // Crear un elemento de texto temporal y seleccionarlo
-    var elementoTemporal = $('<textarea>');
-    elementoTemporal.val(textoACopiar).css('position', 'absolute').css('left', '-9999px');
-    $('body').append(elementoTemporal);
-    elementoTemporal.select();
+  if (document.body.createTextRange) {
+    range = document.body.createTextRange();
+    range.moveToElementText(element);
+    range.select();
+  } else if (window.getSelection) {
+    selection = window.getSelection();
+    range = document.createRange();
+    range.selectNodeContents(element);
+    selection.removeAllRanges();
+    selection.addRange(range);
+  }
 
-    // Copiar el texto al portapapeles
+  try {
     document.execCommand('copy');
-
-    // Remover el elemento temporal
-    elementoTemporal.remove();
-
-
+  } catch (err) {
+    alert('No se pudo copiar el texto al portapapeles');
+  }
 }
+
 
 
 // Función para mostrar SweetAlert al hacer clic en el botón

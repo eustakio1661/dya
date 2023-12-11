@@ -45,3 +45,11 @@
     background-color: transparent;
     margin: 20px 0; /* Puedes ajustar el espacio alrededor del separador según sea necesario */
   }
+  .tooltip {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.tooltip.appear {
+    opacity: 1;
+}
