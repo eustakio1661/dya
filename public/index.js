@@ -1,3 +1,4 @@
+const _url = "https://regalos-boda-dya-8627f768c4f6.herokuapp.com/";
 // Configura DataTable en español y personaliza opciones
 $(document).ready(function () {
   // Ruta del archivo JSON
@@ -125,7 +126,7 @@ function mostrarSweetAlert(idProducto) {
 
 function guardarJson(idProducto,nombreIngresado){
     // Carga el archivo JSON y realiza la actualización
-    $.getJSON("data/lista.json", function (data) {
+    $.getJSON(_url+"data/lista.json", function (data) {
         // Busca el elemento por el ID del producto
         const producto = data.find((item) => item.id == idProducto);
 
@@ -134,20 +135,20 @@ function guardarJson(idProducto,nombreIngresado){
             producto.estado = true;
             producto.persona = nombreIngresado;
 
-            // Guarda los cambios en el archivo JSON
             $.ajax({
-                type: "POST",
-                url: "data/lista.json", // Ruta del archivo JSON
-                data: { data: JSON.stringify(data) },
-                success: function (response) {
-                    console.log("Datos actualizados con éxito");
-                    // Recarga la página después de guardar los cambios
-                    location.reload();
-                },
-                error: function (error) {
-                    console.error("Error al actualizar datos:", error);
-                },
-            });
+              type: "POST",
+              url: _url+"data/lista",
+              contentType: "application/json",
+              data: JSON.stringify({ data }),
+              success: function (response) {
+                  console.log("Datos actualizados con éxito");
+                  // Recarga la página después de guardar los cambios
+                  location.reload();
+              },
+              error: function (error) {
+                  console.error("Error al actualizar datos:", error);
+              },
+          });
         }
     });
  
