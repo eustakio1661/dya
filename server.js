@@ -23,8 +23,7 @@ app.get('/data/lista', (req, res) => {
   res.json(jsonData);
 });
 
-// Ruta para actualizar el archivo JSON
-app.post('/data/lista', (req, res) => {
+app.post('/actualizar-lista', (req, res) => {
   const newData = req.body.data;
 
   // Escribe el nuevo contenido en el archivo JSON

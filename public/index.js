@@ -111,8 +111,7 @@ function mostrarSweetAlert(idProducto) {
             console.log("Datos confirmados:", nombreIngresado);
             // Realiza la lógica de registro si es necesario
 
-            guardarJson(idProducto,nombreIngresado);
-            
+            guardarJson(idProducto, nombreIngresado);
           } else {
             // Si no está de acuerdo, vuelve a solicitar el nombre
             mostrarSweetAlert();
@@ -123,33 +122,32 @@ function mostrarSweetAlert(idProducto) {
   });
 }
 
-
 function guardarJson(idProducto, nombreIngresado) {
   // Carga el archivo JSON y realiza la actualización
-  $.getJSON(_url+"data/lista.json", function (data) {
-      // Busca el elemento por el ID del producto
-      const producto = data.find((item) => item.id == idProducto);
+  $.getJSON(_url + "data/lista.json", function (data) {
+    // Busca el elemento por el ID del producto
+    const producto = data.find((item) => item.id == idProducto);
 
-      // Actualiza las propiedades del producto
-      if (producto) {
-          producto.estado = true;
-          producto.persona = nombreIngresado;
+    // Actualiza las propiedades del producto
+    if (producto) {
+      producto.estado = true;
+      producto.persona = nombreIngresado;
 
-          // Guarda los cambios directamente en el archivo JSON
-          $.ajax({
-              type: "PUT", // Cambia a método PUT
-              url: _url+"data/lista.json", // Ruta directa al archivo JSON
-              contentType: "application/json",
-              data: JSON.stringify(data), // Envía todo el contenido actualizado
-              success: function (response) {
-                  console.log("Datos actualizados con éxito");
-                  // Recarga la página después de guardar los cambios
-                  location.reload();
-              },
-              error: function (error) {
-                  console.error("Error al actualizar datos:", error);
-              },
-          });
-      }
+      // Guarda los cambios directamente en el archivo JSON
+      $.ajax({
+        type: "POST",
+        url: _url + "actualizar-lista", // Ruta directa al archivo JSON
+        contentType: "application/json",
+        data: JSON.stringify(data), // Envía todo el contenido actualizado
+        success: function (response) {
+          console.log("Datos actualizados con éxito");
+          // Recarga la página después de guardar los cambios
+          location.reload();
+        },
+        error: function (error) {
+          console.error("Error al actualizar datos:", error);
+        },
+      });
+    }
   });
 }
